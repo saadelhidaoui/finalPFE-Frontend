@@ -1,0 +1,213 @@
+        <p-dialog [(visible)]="createEstivageDialog" [style]="{width: '70vw'}"
+                header="Estivage" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Estivage">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="1">Reference</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Reference"
+                                                   id="1" [(ngModel)]="selectedEstivage.reference"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="2">Centre estivage<span style="color: red;">*</span></label>
+                                            <p-dropdown [options]="centreEstivages" [(ngModel)]="selectedEstivage.centreEstivageVo"
+                                                    id="2" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Centre estivage" [ngClass]="{'ng-invalid ng-dirty' : !validEstivageCentreEstivage}"  >
+                                            </p-dropdown>
+                                            <small class='p-error' *ngIf='!validEstivageCentreEstivage'>CentreEstivage est obligatoire.</small>
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatecentreEstivage('centreEstivage')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="3">Num arrivee<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Num arrivee"
+                                                   id="3" [(ngModel)]="selectedEstivage.numArrivee"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validEstivageNumArrivee}"  />
+                                            <small class='p-error' *ngIf='!validEstivageNumArrivee'>NumArrivee est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="4">Envoye</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="4"  [(ngModel)]="selectedEstivage.envoye"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="5">Date envoi</label>
+                                            <p-calendar id="5"
+                                                        placeholder="Date envoi"  [(ngModel)]="selectedEstivage.dateEnvoi"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="6">Notes</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Notes"
+                                                   id="6" [(ngModel)]="selectedEstivage.notes"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="7">Charge cas</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Charge cas"
+                                                   id="7" [(ngModel)]="selectedEstivage.chargeCas"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-11 p-md-2">
+                                            <label for="8">Niveau importance<span style="color: red;">*</span></label>
+                                            <p-dropdown [options]="niveauImportances" [(ngModel)]="selectedEstivage.niveauImportanceVo"
+                                                    id="8" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Niveau importance" [ngClass]="{'ng-invalid ng-dirty' : !validEstivageNiveauImportance}"  >
+                                            </p-dropdown>
+                                            <small class='p-error' *ngIf='!validEstivageNiveauImportance'>NiveauImportance est obligatoire.</small>
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateniveauImportance('niveauImportance')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="9">Resultat</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="9"  [(ngModel)]="selectedEstivage.resultat"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="10">Archive</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="10"  [(ngModel)]="selectedEstivage.archive"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="11">Date archivage</label>
+                                            <p-calendar id="11"
+                                                        placeholder="Date archivage"  [(ngModel)]="selectedEstivage.dateArchivage"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="12">Date creation</label>
+                                            <p-calendar id="12"
+                                                        placeholder="Date creation"  [(ngModel)]="selectedEstivage.dateCreation"
+                                                    dateFormat="{{dateFormat}}"  >
+                                            </p-calendar>
+                                            
+                                        </div>
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="13">Admin</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="13"  [(ngModel)]="selectedEstivage.admin"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="14">Visible</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="14"  [(ngModel)]="selectedEstivage.visible"
+                                                     >
+                                                </p-inputSwitch>
+                                                
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="15">Username</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Username"
+                                                   id="15" [(ngModel)]="selectedEstivage.username"
+                                                     />
+                                            
+                                        </div>
+
+
+
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-centre-estivage-create-admin></app-centre-estivage-create-admin>
+                    <app-niveau-importance-create-admin></app-niveau-importance-create-admin>
+
+
+    </p-dialog>

@@ -1,0 +1,881 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateAdherent('adherent')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchAdherent.numAdhesion">
+                                    <label for="1">Num adhesion</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchAdherent.cin">
+                                    <label for="2">Cin</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchAdherent.nom">
+                                    <label for="3">Nom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="4"
+                                           type="text"  [(ngModel)]="searchAdherent.prenom">
+                                    <label for="4">Prenom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="5"
+                                           type="text"  [(ngModel)]="searchAdherent.origine">
+                                    <label for="5">Origine</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="villes" [(ngModel)]="searchAdherent.villeVo"
+                                        id="6"
+                                        [filter]="true" [showClear]="true"  placeholder="Ville"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="7"
+                                           type="text"  [(ngModel)]="searchAdherent.telephone">
+                                    <label for="7">Telephone</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="qualites" [(ngModel)]="searchAdherent.qualiteVo"
+                                        id="8"
+                                        [filter]="true" [showClear]="true"  placeholder="Qualite"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="9"
+                                           type="text"  [(ngModel)]="searchAdherent.adresse">
+                                    <label for="9">Adresse</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="10"
+                                           type="text"  [(ngModel)]="searchAdherent.ppr">
+                                    <label for="10">Ppr</label>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateNaissanceMin"
+                                    id="11-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="11-1">Date naissance Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateNaissanceMax"
+                                    id="11-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="11-2">Date naissance Max</label>
+                        </span>
+
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etatCartes" [(ngModel)]="searchAdherent.etatCarteVo"
+                                        id="12"
+                                        [filter]="true" [showClear]="true"  placeholder="Etat carte"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateArriveeMin"
+                                    id="13-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="13-1">Date arrivee Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateArriveeMax"
+                                    id="13-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="13-2">Date arrivee Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateReceptionMin"
+                                    id="14-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="14-1">Date reception Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateReceptionMax"
+                                    id="14-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="14-2">Date reception Max</label>
+                        </span>
+
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="statuts" [(ngModel)]="searchAdherent.statutVo"
+                                        id="15"
+                                        [filter]="true" [showClear]="true"  placeholder="Statut"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="fonctions" [(ngModel)]="searchAdherent.fonctionVo"
+                                        id="16"
+                                        [filter]="true" [showClear]="true"  placeholder="Fonction"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchAdherent.conjointsMin"
+                                                             id="17-1"></p-inputNumber>
+                                              <label for="17-1">Conjoints Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchAdherent.conjointsMax"
+                                                             id="17-2"></p-inputNumber>
+                                             <label for="17-2">Conjoints Max</label>
+                                       </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchAdherent.pieceJointeAdherentsMin"
+                                                             id="19-1"></p-inputNumber>
+                                              <label for="19-1">Piece jointe adherents Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchAdherent.pieceJointeAdherentsMax"
+                                                             id="19-2"></p-inputNumber>
+                                             <label for="19-2">Piece jointe adherents Max</label>
+                                       </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="20"
+                                           type="text"  [(ngModel)]="searchAdherent.numeroMatricule">
+                                    <label for="20">Numero matricule</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="21"
+                                           type="text"  [(ngModel)]="searchAdherent.emailPrincipale">
+                                    <label for="21">Email principale</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="22" [options]="yesOrNoCredentialsNonExpired" [(ngModel)]="searchAdherent.credentialsNonExpired"
+                                            [filter]="false" [showClear]="true"  placeholder="Credentials non expired"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="23" [options]="yesOrNoEnabled" [(ngModel)]="searchAdherent.enabled"
+                                            [filter]="false" [showClear]="true"  placeholder="Enabled"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="24" [options]="yesOrNoAccountNonExpired" [(ngModel)]="searchAdherent.accountNonExpired"
+                                            [filter]="false" [showClear]="true"  placeholder="Account non expired"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="25" [options]="yesOrNoAccountNonLocked" [(ngModel)]="searchAdherent.accountNonLocked"
+                                            [filter]="false" [showClear]="true"  placeholder="Account non locked"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="26" [options]="yesOrNoPasswordChanged" [(ngModel)]="searchAdherent.passwordChanged"
+                                            [filter]="false" [showClear]="true"  placeholder="Password changed"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.createdAtMin"
+                                    id="27-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="27-1">Created at Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.createdAtMax"
+                                    id="27-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="27-2">Created at Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.updatedAtMin"
+                                    id="28-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="28-1">Updated at Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.updatedAtMax"
+                                    id="28-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="28-2">Updated at Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="29"
+                                           type="text"  [(ngModel)]="searchAdherent.username">
+                                    <label for="29">Username</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="30"
+                                           type="text"  [(ngModel)]="searchAdherent.password">
+                                    <label for="30">Password</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="32" [options]="yesOrNoArchive" [(ngModel)]="searchAdherent.archive"
+                                            [filter]="false" [showClear]="true"  placeholder="Archive"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateArchivageMin"
+                                    id="33-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="33-1">Date archivage Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateArchivageMax"
+                                    id="33-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="33-2">Date archivage Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateCreationMin"
+                                    id="34-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="34-1">Date creation Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchAdherent.dateCreationMax"
+                                    id="34-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="34-2">Date creation Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="35" [options]="yesOrNoAdmin" [(ngModel)]="searchAdherent.admin"
+                                            [filter]="false" [showClear]="true"  placeholder="Admin"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="36" [options]="yesOrNoVisible" [(ngModel)]="searchAdherent.visible"
+                                            [filter]="false" [showClear]="true"  placeholder="Visible"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="37"
+                                           type="text"  [(ngModel)]="searchAdherent.username">
+                                    <label for="37">Username</label>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="adherents" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['numAdhesion', 'cin', 'nom', 'prenom', 'origine', 'libelle', 'telephone', 'libelle', 'adresse', 'ppr', 'dateNaissance', 'libelle', 'dateArrivee', 'dateReception', 'libelle', 'libelle', 'numeroMatricule', 'emailPrincipale', 'credentialsNonExpired', 'enabled', 'accountNonExpired', 'accountNonLocked', 'passwordChanged', 'createdAt', 'updatedAt', 'username', 'password', 'role', 'archive', 'dateArchivage', 'dateCreation', 'admin', 'visible', 'username']" [(selection)]="selectedAdherent"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Adherents</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="numAdhesion">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Num adhesion</span>
+                                        <p-sortIcon field="numAdhesion"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="cin">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cin</span>
+                                        <p-sortIcon field="cin"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom</span>
+                                        <p-sortIcon field="nom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="prenom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Prenom</span>
+                                        <p-sortIcon field="prenom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="origine">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Origine</span>
+                                        <p-sortIcon field="origine"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="ville">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ville</span>
+                                        <p-sortIcon field="ville"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="telephone">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Telephone</span>
+                                        <p-sortIcon field="telephone"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="qualite">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Qualite</span>
+                                        <p-sortIcon field="qualite"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="adresse">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Adresse</span>
+                                        <p-sortIcon field="adresse"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="ppr">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ppr</span>
+                                        <p-sortIcon field="ppr"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateNaissance">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date naissance</span>
+                                        <p-sortIcon field="dateNaissance"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="etatCarte">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etat carte</span>
+                                        <p-sortIcon field="etatCarte"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateArrivee">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date arrivee</span>
+                                        <p-sortIcon field="dateArrivee"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateReception">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date reception</span>
+                                        <p-sortIcon field="dateReception"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="statut">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Statut</span>
+                                        <p-sortIcon field="statut"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="fonction">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Fonction</span>
+                                        <p-sortIcon field="fonction"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+
+
+
+                                <!-- 
+                                <th pSortableColumn="numeroMatricule">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Numero matricule</span>
+                                        <p-sortIcon field="numeroMatricule"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="emailPrincipale">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Email principale</span>
+                                        <p-sortIcon field="emailPrincipale"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="credentialsNonExpired">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Credentials non expired</span>
+                                        <p-sortIcon field="credentialsNonExpired"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="enabled">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Enabled</span>
+                                        <p-sortIcon field="enabled"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="accountNonExpired">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Account non expired</span>
+                                        <p-sortIcon field="accountNonExpired"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="accountNonLocked">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Account non locked</span>
+                                        <p-sortIcon field="accountNonLocked"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="passwordChanged">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Password changed</span>
+                                        <p-sortIcon field="passwordChanged"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="createdAt">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Created at</span>
+                                        <p-sortIcon field="createdAt"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="updatedAt">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Updated at</span>
+                                        <p-sortIcon field="updatedAt"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="username">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Username</span>
+                                        <p-sortIcon field="username"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="password">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Password</span>
+                                        <p-sortIcon field="password"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="role">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Role</span>
+                                        <p-sortIcon field="role"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="archive">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Archive</span>
+                                        <p-sortIcon field="archive"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateArchivage">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date archivage</span>
+                                        <p-sortIcon field="dateArchivage"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateCreation">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date creation</span>
+                                        <p-sortIcon field="dateCreation"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="admin">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Admin</span>
+                                        <p-sortIcon field="admin"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="visible">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Visible</span>
+                                        <p-sortIcon field="visible"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="username">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Username</span>
+                                        <p-sortIcon field="username"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-adherent>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="adherent"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{adherent.numAdhesion}}</td>
+                            
+
+                            
+                                 <td>{{adherent.cin}}</td>
+                            
+
+                            
+                                 <td>{{adherent.nom}}</td>
+                            
+
+                            
+                                 <td>{{adherent.prenom}}</td>
+                            
+
+                            
+                                 <td>{{adherent.origine}}</td>
+                            
+
+                            
+                                <td>{{adherent.villeVo?.libelle}}</td>
+                            
+
+                            
+                                 <td>{{adherent.telephone}}</td>
+                            
+
+                            
+                                <td>{{adherent.qualiteVo?.libelle}}</td>
+                            
+
+                             <!-- 
+                                 <td>{{adherent.adresse}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.ppr}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.dateNaissance | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.etatCarteVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.dateArrivee | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.dateReception | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.statutVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.fonctionVo?.libelle}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.numeroMatricule}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.emailPrincipale}}</td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.credentialsNonExpired" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.credentialsNonExpired" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.enabled" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.enabled" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.accountNonExpired" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.accountNonExpired" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.accountNonLocked" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.accountNonLocked" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.passwordChanged" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.passwordChanged" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.createdAt | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.updatedAt | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.username}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.password}}</td>
+                             --> 
+
+                             <!-- 
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.archive" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.archive" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.dateArchivage | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{adherent.dateCreation | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.admin" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.admin" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="adherent.visible" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!adherent.visible" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{adherent.username}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editAdherent(adherent)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewAdherent(adherent)"></button>
+                            <button *ngIf="!adherent.archive" pButton pRipple icon="pi pi-calendar-minus" class="p-button-rounded p-button-help p-mr-2"
+                                    (click)="archiverAdherent(adherent)"></button>
+
+                            <button *ngIf="adherent.archive" pButton pRipple icon="pi pi-calendar-plus" class="p-button-rounded p-button-secondary p-mr-2"
+                                    (click)="desarchiverAdherent(adherent)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateAdherent(adherent)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{adherents ? adherents.length == 1 ? 'y a' : 'y a' : 'y a' }} {{adherents ? adherents.length : 0 }} {{adherents ? adherents.length == 1 ? 'adherent' : 'adherents' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-adherent-create-adherent></app-adherent-create-adherent>
+        <app-adherent-edit-adherent></app-adherent-edit-adherent>
+        <app-adherent-view-adherent></app-adherent-view-adherent>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

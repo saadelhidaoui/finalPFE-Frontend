@@ -1,0 +1,180 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateEstivageCentreEstivage('estivageCentreEstivage')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchEstivageCentreEstivage.reference">
+                                    <label for="1">Reference</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="centreEstivages" [(ngModel)]="searchEstivageCentreEstivage.centreEstivageVo"
+                                        id="2"
+                                        [filter]="true" [showClear]="true"  placeholder="Centre estivage"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="estivages" [(ngModel)]="searchEstivageCentreEstivage.estivageVo"
+                                        id="3"
+                                        [filter]="true" [showClear]="true"  placeholder="Estivage"
+                                        optionLabel="reference">
+                                </p-dropdown>
+                            </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchEstivageCentreEstivage.ordreMin"
+                                                             id="4-1"></p-inputNumber>
+                                              <label for="4-1">Ordre Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchEstivageCentreEstivage.ordreMax"
+                                                             id="4-2"></p-inputNumber>
+                                             <label for="4-2">Ordre Max</label>
+                                       </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="estivageCentreEstivages" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['reference', 'libelle', 'reference', 'ordre']" [(selection)]="selectedEstivageCentreEstivage"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Estivage centre estivages</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="reference">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Reference</span>
+                                        <p-sortIcon field="reference"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="centreEstivage">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Centre estivage</span>
+                                        <p-sortIcon field="centreEstivage"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="estivage">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Estivage</span>
+                                        <p-sortIcon field="estivage"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="ordre">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ordre</span>
+                                        <p-sortIcon field="ordre"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-estivageCentreEstivage>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="estivageCentreEstivage"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{estivageCentreEstivage.reference}}</td>
+                            
+
+                            
+                                <td>{{estivageCentreEstivage.centreEstivageVo?.libelle}}</td>
+                            
+
+                            
+                                <td>{{estivageCentreEstivage.estivageVo?.reference}}</td>
+                            
+
+                            
+                                 <td>{{estivageCentreEstivage.ordre}}</td>
+                            
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editEstivageCentreEstivage(estivageCentreEstivage)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewEstivageCentreEstivage(estivageCentreEstivage)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteEstivageCentreEstivage(estivageCentreEstivage)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateEstivageCentreEstivage(estivageCentreEstivage)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{estivageCentreEstivages ? estivageCentreEstivages.length == 1 ? 'y a' : 'y a' : 'y a' }} {{estivageCentreEstivages ? estivageCentreEstivages.length : 0 }} {{estivageCentreEstivages ? estivageCentreEstivages.length == 1 ? 'estivageCentreEstivage' : 'estivageCentreEstivages' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-estivage-centre-estivage-create-moderateur></app-estivage-centre-estivage-create-moderateur>
+        <app-estivage-centre-estivage-edit-moderateur></app-estivage-centre-estivage-edit-moderateur>
+        <app-estivage-centre-estivage-view-moderateur></app-estivage-centre-estivage-view-moderateur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

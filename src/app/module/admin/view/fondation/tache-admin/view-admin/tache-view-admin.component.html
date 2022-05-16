@@ -1,0 +1,84 @@
+
+<p-dialog [(visible)]="viewTacheDialog" [style]="{width: '70vw'}"
+        header="Tache" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Tache">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Reference</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Reference"  [(ngModel)]="selectedTache.reference"
+                                           id="1" [(ngModel)]="selectedTache.reference"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Date tache</label>
+                                    <p-calendar id="2" [disabled]="true"
+                                                placeholder="Date tache"  [(ngModel)]="selectedTache.dateTache"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="3">Description</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Description"  [(ngModel)]="selectedTache.description"
+                                           id="3" [(ngModel)]="selectedTache.description"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Etat tache</label>
+                                    <p-dropdown [options]="etatTaches" [(ngModel)]="selectedTache.etatTacheVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat tache">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="5">Moderateur</label>
+                                    <p-dropdown [options]="moderateurs" [(ngModel)]="selectedTache.moderateurVo"
+                                            id="5" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="numeroMatricule"
+                                            placeholder="Moderateur">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-tache-create-admin></app-etat-tache-create-admin>
+            <app-moderateur-create-admin></app-moderateur-create-admin>
+
+
+
+</p-dialog>
+
+
+

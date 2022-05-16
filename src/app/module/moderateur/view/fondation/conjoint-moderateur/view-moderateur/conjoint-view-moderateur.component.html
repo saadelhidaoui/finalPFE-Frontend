@@ -1,0 +1,117 @@
+
+<p-dialog [(visible)]="viewConjointDialog" [style]="{width: '70vw'}"
+        header="Conjoint" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Conjoint">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="1">Cin</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cin"  [(ngModel)]="selectedConjoint.cin"
+                                           id="1" [(ngModel)]="selectedConjoint.cin"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="2">Nom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom"  [(ngModel)]="selectedConjoint.nom"
+                                           id="2" [(ngModel)]="selectedConjoint.nom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="3">Prenom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom"  [(ngModel)]="selectedConjoint.prenom"
+                                           id="3" [(ngModel)]="selectedConjoint.prenom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="4">Origin</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Origin"  [(ngModel)]="selectedConjoint.origin"
+                                           id="4" [(ngModel)]="selectedConjoint.origin"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="5">Email</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Email"  [(ngModel)]="selectedConjoint.email"
+                                           id="5" [(ngModel)]="selectedConjoint.email"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="6">Telephone</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Telephone"  [(ngModel)]="selectedConjoint.telephone"
+                                           id="6" [(ngModel)]="selectedConjoint.telephone"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="7">Qualite</label>
+                                    <p-dropdown [options]="qualites" [(ngModel)]="selectedConjoint.qualiteVo"
+                                            id="7" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Qualite">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="8">Adherent</label>
+                                    <p-dropdown [options]="adherents" [(ngModel)]="selectedConjoint.adherentVo"
+                                            id="8" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="username"
+                                            placeholder="Adherent">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-qualite-create-moderateur></app-qualite-create-moderateur>
+            <app-adherent-create-moderateur></app-adherent-create-moderateur>
+
+
+
+</p-dialog>
+
+
+

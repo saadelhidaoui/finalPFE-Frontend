@@ -1,0 +1,193 @@
+
+<p-dialog [(visible)]="viewProjetDialog" [style]="{width: '70vw'}"
+        header="Projet" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Projet">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Reference</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Reference"  [(ngModel)]="selectedProjet.reference"
+                                           id="1" [(ngModel)]="selectedProjet.reference"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Description</label>
+                                    <textarea id="2" pInputTextarea rows="5" cols="30"
+                                              placeholder="Description"  [(ngModel)]="selectedProjet.description"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Date debut</label>
+                                    <p-calendar id="3" [disabled]="true"
+                                                placeholder="Date debut"  [(ngModel)]="selectedProjet.dateDebut"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Etat projet</label>
+                                    <p-dropdown [options]="etatProjets" [(ngModel)]="selectedProjet.etatProjetVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat projet">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="5">Pv</label>
+                                    <textarea id="5" pInputTextarea rows="5" cols="30"
+                                              placeholder="Pv"  [(ngModel)]="selectedProjet.pv"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Piece jointe projets</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="6" [disabled]="true"
+                                                   placeholder="Piece jointe projets"  [(ngModel)]="selectedProjet.pieceJointeProjets"
+                                            [(ngModel)]="selectedProjet.pieceJointeProjets"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="7">Archive</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="7"  [disabled]="true" [(ngModel)]="selectedProjet.archive"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Date archivage</label>
+                                    <p-calendar id="8" [disabled]="true"
+                                                placeholder="Date archivage"  [(ngModel)]="selectedProjet.dateArchivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Date creation</label>
+                                    <p-calendar id="9" [disabled]="true"
+                                                placeholder="Date creation"  [(ngModel)]="selectedProjet.dateCreation"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="10">Admin</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="10"  [disabled]="true" [(ngModel)]="selectedProjet.admin"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="11">Visible</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="11"  [disabled]="true" [(ngModel)]="selectedProjet.visible"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="12">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedProjet.username"
+                                           id="12" [(ngModel)]="selectedProjet.username"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Piece jointe projets">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedProjet.pieceJointeProjetsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Path</th>
+                                                            <th>Date ajout</th>
+                                                            <th>Libelle</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.path}}</td>
+
+                                                            <td>{{p.dateAjout | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.libelle}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-projet-create-adherent></app-etat-projet-create-adherent>
+
+
+
+</p-dialog>
+
+
+

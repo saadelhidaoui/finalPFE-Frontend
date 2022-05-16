@@ -1,0 +1,136 @@
+
+<p-dialog [(visible)]="viewVilleDialog" [style]="{width: '70vw'}"
+        header="Ville" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Ville">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="1">Reference</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Reference"  [(ngModel)]="selectedVille.reference"
+                                           id="1" [(ngModel)]="selectedVille.reference"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="2">Libelle</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle"  [(ngModel)]="selectedVille.libelle"
+                                           id="2" [(ngModel)]="selectedVille.libelle"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-6">
+                                    <label for="4">Region</label>
+                                    <p-dropdown [options]="regions" [(ngModel)]="selectedVille.regionVo"
+                                            id="4" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Region">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Missions">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedVille.missionsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Reference</th>
+                                                            <th>Date debut</th>
+                                                            <th>Date fin</th>
+                                                            <th>Moyen de transport</th>
+                                                            <th>Distance</th>
+                                                            <th>Moderateur</th>
+                                                            <th>Pv</th>
+                                                            <th>Piece jointe missions</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.reference}}</td>
+
+                                                            <td>{{p.dateDebut | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateFin | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.moyenDeTransport}}</td>
+
+                                                            <td>{{p.distance}}</td>
+
+                                                        <td>{{p.moderateurVo?.numeroMatricule}}</td>
+                                                            <td>{{p.pv}}</td>
+
+                                                            <td>{{p.pieceJointeMissions}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-region-create-admin></app-region-create-admin>
+
+                    <app-moderateur-create-admin></app-moderateur-create-admin>
+
+
+</p-dialog>
+
+
+

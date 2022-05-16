@@ -1,0 +1,126 @@
+
+<p-dialog [(visible)]="viewPieceJointeReclamationDialog" [style]="{width: '70vw'}"
+        header="Piece jointe reclamation" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Piece jointe reclamation">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Path</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Path"  [(ngModel)]="selectedPieceJointeReclamation.path"
+                                           id="1" [(ngModel)]="selectedPieceJointeReclamation.path"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Reclamation</label>
+                                    <p-dropdown [options]="reclamations" [(ngModel)]="selectedPieceJointeReclamation.reclamationVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="reference"
+                                            placeholder="Reclamation">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Date ajout</label>
+                                    <p-calendar id="3" [disabled]="true"
+                                                placeholder="Date ajout"  [(ngModel)]="selectedPieceJointeReclamation.dateAjout"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Libelle</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Libelle"  [(ngModel)]="selectedPieceJointeReclamation.libelle"
+                                           id="4" [(ngModel)]="selectedPieceJointeReclamation.libelle"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="5">Archive</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="5"  [disabled]="true" [(ngModel)]="selectedPieceJointeReclamation.archive"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Date archivage</label>
+                                    <p-calendar id="6" [disabled]="true"
+                                                placeholder="Date archivage"  [(ngModel)]="selectedPieceJointeReclamation.dateArchivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="7">Date creation</label>
+                                    <p-calendar id="7" [disabled]="true"
+                                                placeholder="Date creation"  [(ngModel)]="selectedPieceJointeReclamation.dateCreation"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="8">Admin</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="8"  [disabled]="true" [(ngModel)]="selectedPieceJointeReclamation.admin"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="9">Visible</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="9"  [disabled]="true" [(ngModel)]="selectedPieceJointeReclamation.visible"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedPieceJointeReclamation.username"
+                                           id="10" [(ngModel)]="selectedPieceJointeReclamation.username"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-reclamation-create-moderateur></app-reclamation-create-moderateur>
+
+
+
+</p-dialog>
+
+
+

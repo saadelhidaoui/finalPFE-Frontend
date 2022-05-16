@@ -1,0 +1,363 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateReclamation('reclamation')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchReclamation.reference">
+                                    <label for="1">Reference</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchReclamation.libelle">
+                                    <label for="2">Libelle</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="adherents" [(ngModel)]="searchReclamation.adherentVo"
+                                        id="4"
+                                        [filter]="true" [showClear]="true"  placeholder="Adherent"
+                                        optionLabel="username">
+                                </p-dropdown>
+                            </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="etatReclamations" [(ngModel)]="searchReclamation.etatReclamationVo"
+                                        id="5"
+                                        [filter]="true" [showClear]="true"  placeholder="Etat reclamation"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateReclamationMin"
+                                    id="6-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="6-1">Date reclamation Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateReclamationMax"
+                                    id="6-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="6-2">Date reclamation Max</label>
+                        </span>
+
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchReclamation.pieceJointeReclamationsMin"
+                                                             id="7-1"></p-inputNumber>
+                                              <label for="7-1">Piece jointe reclamations Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchReclamation.pieceJointeReclamationsMax"
+                                                             id="7-2"></p-inputNumber>
+                                             <label for="7-2">Piece jointe reclamations Max</label>
+                                       </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="8" [options]="yesOrNoArchive" [(ngModel)]="searchReclamation.archive"
+                                            [filter]="false" [showClear]="true"  placeholder="Archive"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateArchivageMin"
+                                    id="9-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="9-1">Date archivage Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateArchivageMax"
+                                    id="9-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="9-2">Date archivage Max</label>
+                        </span>
+
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateCreationMin"
+                                    id="10-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="10-1">Date creation Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchReclamation.dateCreationMax"
+                                    id="10-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="10-2">Date creation Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="11" [options]="yesOrNoAdmin" [(ngModel)]="searchReclamation.admin"
+                                            [filter]="false" [showClear]="true"  placeholder="Admin"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="12" [options]="yesOrNoVisible" [(ngModel)]="searchReclamation.visible"
+                                            [filter]="false" [showClear]="true"  placeholder="Visible"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="13"
+                                           type="text"  [(ngModel)]="searchReclamation.username">
+                                    <label for="13">Username</label>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="reclamations" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['reference', 'libelle', 'username', 'libelle', 'dateReclamation', 'archive', 'dateArchivage', 'dateCreation', 'admin', 'visible', 'username']" [(selection)]="selectedReclamation"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Reclamations</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="reference">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Reference</span>
+                                        <p-sortIcon field="reference"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="libelle">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Libelle</span>
+                                        <p-sortIcon field="libelle"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="adherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Adherent</span>
+                                        <p-sortIcon field="adherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="etatReclamation">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Etat reclamation</span>
+                                        <p-sortIcon field="etatReclamation"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="dateReclamation">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date reclamation</span>
+                                        <p-sortIcon field="dateReclamation"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+
+                                
+                                <th pSortableColumn="archive">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Archive</span>
+                                        <p-sortIcon field="archive"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="dateArchivage">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date archivage</span>
+                                        <p-sortIcon field="dateArchivage"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="dateCreation">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date creation</span>
+                                        <p-sortIcon field="dateCreation"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="admin">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Admin</span>
+                                        <p-sortIcon field="admin"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="visible">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Visible</span>
+                                        <p-sortIcon field="visible"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="username">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Username</span>
+                                        <p-sortIcon field="username"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-reclamation>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="reclamation"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{reclamation.reference}}</td>
+                            
+
+                            
+                                 <td>{{reclamation.libelle}}</td>
+                            
+
+                            
+                                <td>{{reclamation.adherentVo?.username}}</td>
+                            
+
+                            
+                                <td>{{reclamation.etatReclamationVo?.libelle}}</td>
+                            
+
+                            
+                                <td>{{reclamation.dateReclamation | date:'dd-M-yyyy' }}</td>
+                            
+
+                            
+                                <td><i *ngIf="reclamation.archive" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!reclamation.archive" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+                            
+                                <td>{{reclamation.dateArchivage | date:'dd-M-yyyy' }}</td>
+                            
+
+                            
+                                <td>{{reclamation.dateCreation | date:'dd-M-yyyy' }}</td>
+                            
+
+                             <!-- 
+                                <td><i *ngIf="reclamation.admin" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!reclamation.admin" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                <td><i *ngIf="reclamation.visible" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!reclamation.visible" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{reclamation.username}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editReclamation(reclamation)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewReclamation(reclamation)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateReclamation(reclamation)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{reclamations ? reclamations.length == 1 ? 'y a' : 'y a' : 'y a' }} {{reclamations ? reclamations.length : 0 }} {{reclamations ? reclamations.length == 1 ? 'reclamation' : 'reclamations' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-reclamation-create-chercheur></app-reclamation-create-chercheur>
+        <app-reclamation-edit-chercheur></app-reclamation-edit-chercheur>
+        <app-reclamation-view-chercheur></app-reclamation-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

@@ -1,0 +1,826 @@
+
+        <p-dialog [(visible)]="editAdherentDialog" [style]="{width: '70vw'}"
+                header="Adherent" [modal]="true"
+                styleClass="p-fluid">
+
+            <ng-template pTemplate="content">
+                <p-tabView>
+                    <p-tabPanel header="Adherent">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="1">Num adhesion</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Num adhesion"
+                                                   id="1" [(ngModel)]="selectedAdherent.numAdhesion"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="2">Cin</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Cin"
+                                                   id="2" [(ngModel)]="selectedAdherent.cin"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="3">Nom</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Nom"
+                                                   id="3" [(ngModel)]="selectedAdherent.nom"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="4">Prenom</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Prenom"
+                                                   id="4" [(ngModel)]="selectedAdherent.prenom"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="5">Origine</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Origine"
+                                                   id="5" [(ngModel)]="selectedAdherent.origine"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <label for="6">Ville</label>
+                                            <p-dropdown [options]="villes" [(ngModel)]="selectedAdherent.villeVo"
+                                                    id="6" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Ville">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateville('ville')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="7">Telephone</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Telephone"
+                                                   id="7" [(ngModel)]="selectedAdherent.telephone"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <label for="8">Qualite</label>
+                                            <p-dropdown [options]="qualites" [(ngModel)]="selectedAdherent.qualiteVo"
+                                                    id="8" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Qualite">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatequalite('qualite')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="9">Adresse</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Adresse"
+                                                   id="9" [(ngModel)]="selectedAdherent.adresse"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="10">Ppr</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Ppr"
+                                                   id="10" [(ngModel)]="selectedAdherent.ppr"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="11">Date naissance</label>
+                                            <p-calendar id="11"
+                                                        placeholder="Date naissance"  [(ngModel)]="selectedAdherent.dateNaissance"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <label for="12">Etat carte</label>
+                                            <p-dropdown [options]="etatCartes" [(ngModel)]="selectedAdherent.etatCarteVo"
+                                                    id="12" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Etat carte">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateetatCarte('etatCarte')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="13">Date arrivee</label>
+                                            <p-calendar id="13"
+                                                        placeholder="Date arrivee"  [(ngModel)]="selectedAdherent.dateArrivee"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="14">Date reception</label>
+                                            <p-calendar id="14"
+                                                        placeholder="Date reception"  [(ngModel)]="selectedAdherent.dateReception"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <label for="15">Statut</label>
+                                            <p-dropdown [options]="statuts" [(ngModel)]="selectedAdherent.statutVo"
+                                                    id="15" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Statut">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatestatut('statut')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-2">
+                                            <label for="16">Fonction</label>
+                                            <p-dropdown [options]="fonctions" [(ngModel)]="selectedAdherent.fonctionVo"
+                                                    id="16" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Fonction">
+                                            </p-dropdown>
+                                        </div>
+                                        <div class="p-field p-col-12 p-md-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatefonction('fonction')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="17">Conjoints</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="17"
+                                                           placeholder="Conjoints"  [(ngModel)]="selectedAdherent.conjoints"
+                                                    [(ngModel)]="selectedAdherent.conjoints"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="19">Piece jointe adherents</label>
+                                            <p-inputNumber class="p-mb-2 p-mr-2" id="19"
+                                                           placeholder="Piece jointe adherents"  [(ngModel)]="selectedAdherent.pieceJointeAdherents"
+                                                    [(ngModel)]="selectedAdherent.pieceJointeAdherents"></p-inputNumber>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="20">Numero matricule</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Numero matricule"
+                                                   id="20" [(ngModel)]="selectedAdherent.numeroMatricule"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="21">Email principale</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Email principale"
+                                                   id="21" [(ngModel)]="selectedAdherent.emailPrincipale"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="22">Credentials non expired</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="22"  [(ngModel)]="selectedAdherent.credentialsNonExpired"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="23">Enabled</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="23"  [(ngModel)]="selectedAdherent.enabled"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="24">Account non expired</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="24"  [(ngModel)]="selectedAdherent.accountNonExpired"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="25">Account non locked</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="25"  [(ngModel)]="selectedAdherent.accountNonLocked"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="26">Password changed</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="26"  [(ngModel)]="selectedAdherent.passwordChanged"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="27">Created at</label>
+                                            <p-calendar id="27"
+                                                        placeholder="Created at"  [(ngModel)]="selectedAdherent.createdAt"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="28">Updated at</label>
+                                            <p-calendar id="28"
+                                                        placeholder="Updated at"  [(ngModel)]="selectedAdherent.updatedAt"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="29">Username</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Username"
+                                                   id="29" [(ngModel)]="selectedAdherent.username"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="30">Password</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Password"
+                                                   id="30" [(ngModel)]="selectedAdherent.password"
+                                                   />
+                                        </div>
+
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="32">Archive</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="32"  [(ngModel)]="selectedAdherent.archive"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="33">Date archivage</label>
+                                            <p-calendar id="33"
+                                                        placeholder="Date archivage"  [(ngModel)]="selectedAdherent.dateArchivage"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="34">Date creation</label>
+                                            <p-calendar id="34"
+                                                        placeholder="Date creation"  [(ngModel)]="selectedAdherent.dateCreation"
+                                                    dateFormat="{{dateFormat}}"></p-calendar>
+                                        </div>
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="35">Admin</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="35"  [(ngModel)]="selectedAdherent.admin"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                            <div  class="label-inputswitch">
+                                                <label for="36">Visible</label>
+                                            </div>
+                                            <div class="input-switch">
+                                                <p-inputSwitch id="36"  [(ngModel)]="selectedAdherent.visible"></p-inputSwitch>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="p-field p-col-12 p-md-3">
+                                            <label for="37">Username</label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Username"
+                                                   id="37" [(ngModel)]="selectedAdherent.username"
+                                                   />
+                                        </div>
+
+
+
+                        </div>
+                    </p-tabPanel>
+                            <p-tabPanel header="Conjoints">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Cin</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Cin"
+                                                           id="1" [(ngModel)]="selectedConjoints.cin"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Nom"
+                                                           id="2" [(ngModel)]="selectedConjoints.nom"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Prenom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Prenom"
+                                                           id="3" [(ngModel)]="selectedConjoints.prenom"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="4">Origin</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Origin"
+                                                           id="4" [(ngModel)]="selectedConjoints.origin"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="5">Email</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Email"
+                                                           id="5" [(ngModel)]="selectedConjoints.email"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="6">Telephone</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Telephone"
+                                                           id="6" [(ngModel)]="selectedConjoints.telephone"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Qualite</label>
+                                                        <p-dropdown [options]="qualites" [(ngModel)]="selectedConjoints.qualiteVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Qualite"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatequalite('qualite')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addConjoints()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedAdherent.conjointsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Cin</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Prenom</th>
+                                                                    <th>Origin</th>
+                                                                    <th>Email</th>
+                                                                    <th>Telephone</th>
+                                                                    <th>Qualite</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.cin}}</td>
+
+                                                                    <td>{{p.nom}}</td>
+
+                                                                    <td>{{p.prenom}}</td>
+
+                                                                    <td>{{p.origin}}</td>
+
+                                                                    <td>{{p.email}}</td>
+
+                                                                    <td>{{p.telephone}}</td>
+
+                                                                <td>{{p.qualiteVo?.libelle}}</td>
+                                                        <td>
+                                                            <button (click)="deleteConjoints(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Enfants">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Reference</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Reference"
+                                                           id="1" [(ngModel)]="selectedEnfants.reference"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Nom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Nom"
+                                                           id="2" [(ngModel)]="selectedEnfants.nom"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="3">Prenom</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Prenom"
+                                                           id="3" [(ngModel)]="selectedEnfants.prenom"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="4">Age</label>
+                                                    <p-inputNumber class="p-mb-2 p-mr-2" id="age"
+                                                                   placeholder="Age"
+                                                            [(ngModel)]="selectedEnfants.age"></p-inputNumber>
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="5">Date naissance</label>
+                                                    <p-calendar id="5"
+                                                                placeholder="Date naissance"
+                                                            [(ngModel)]="selectedEnfants.dateNaissance"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="6">Archive</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="6"  [(ngModel)]="selectedEnfants.archive"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="7">Date archivage</label>
+                                                    <p-calendar id="7"
+                                                                placeholder="Date archivage"
+                                                            [(ngModel)]="selectedEnfants.dateArchivage"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="8">Date creation</label>
+                                                    <p-calendar id="8"
+                                                                placeholder="Date creation"
+                                                            [(ngModel)]="selectedEnfants.dateCreation"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="9">Admin</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="9"  [(ngModel)]="selectedEnfants.admin"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="10">Visible</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="10"  [(ngModel)]="selectedEnfants.visible"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="11">Username</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Username"
+                                                           id="11" [(ngModel)]="selectedEnfants.username"
+                                                           />
+                                                </div>
+
+                                                <div class="p-grid">
+                                                    <div class="p-col-11 p-field">
+                                                        <label>Qualite</label>
+                                                        <p-dropdown [options]="qualites" [(ngModel)]="selectedEnfants.qualiteVo"
+                                                                id="0"  [filter]="true"
+                                                                filterMatchMode="contains" [showClear]="true"
+                                                                optionLabel="libelle"
+                                                                placeholder="Qualite"
+                                                        >
+                                                        </p-dropdown>
+
+                                                    </div>
+                                                    <div class="p-col-1">
+                                                        <label></label>
+                                                        <button pButton pRipple type="button"
+                                                                icon="pi pi-plus"   (click)="openCreatequalite('qualite')"
+                                                                class="p-button-success one-colonne-btn-success-align"></button>
+                                                    </div>
+
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addEnfants()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedAdherent.enfantsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Reference</th>
+                                                                    <th>Nom</th>
+                                                                    <th>Prenom</th>
+                                                                    <th>Age</th>
+                                                                    <th>Date naissance</th>
+                                                                    <th>Qualite</th>
+                                                                    <th>Archive</th>
+                                                                    <th>Date archivage</th>
+                                                                    <th>Date creation</th>
+                                                                    <th>Admin</th>
+                                                                    <th>Visible</th>
+                                                                    <th>Username</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.reference}}</td>
+
+                                                                    <td>{{p.nom}}</td>
+
+                                                                    <td>{{p.prenom}}</td>
+
+                                                                    <td>{{p.age}}</td>
+
+                                                                    <td>{{p.dateNaissance | date: dateFormatColumn}}</td>
+
+                                                                <td>{{p.qualiteVo?.libelle}}</td>
+                                                                    <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                                    <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                                    <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.username}}</td>
+
+                                                        <td>
+                                                            <button (click)="deleteEnfants(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+                            <p-tabPanel header="Piece jointe adherents">
+                                <div class="p-grid">
+                                    <div class="p-col">
+                                                <div class="p-field">
+                                                    <label for="1">Path</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Path"
+                                                           id="1" [(ngModel)]="selectedPieceJointeAdherents.path"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field">
+                                                    <label for="2">Date ajout</label>
+                                                    <p-calendar id="2"
+                                                                placeholder="Date ajout"
+                                                            [(ngModel)]="selectedPieceJointeAdherents.dateAjout"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="3">Libelle</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Libelle"
+                                                           id="3" [(ngModel)]="selectedPieceJointeAdherents.libelle"
+                                                           />
+                                                </div>
+
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="4">Archive</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="4"  [(ngModel)]="selectedPieceJointeAdherents.archive"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="5">Date archivage</label>
+                                                    <p-calendar id="5"
+                                                                placeholder="Date archivage"
+                                                            [(ngModel)]="selectedPieceJointeAdherents.dateArchivage"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="6">Date creation</label>
+                                                    <p-calendar id="6"
+                                                                placeholder="Date creation"
+                                                            [(ngModel)]="selectedPieceJointeAdherents.dateCreation"
+                                                            dateFormat="{{dateFormat}}" [showIcon]="true"></p-calendar>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="7">Admin</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="7"  [(ngModel)]="selectedPieceJointeAdherents.admin"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field  align-inputswitch">
+                                                    <div  class="label-inputswitch">
+                                                        <label for="8">Visible</label>
+                                                    </div>
+                                                    <div class="input-switch">
+                                                        <p-inputSwitch id="8"  [(ngModel)]="selectedPieceJointeAdherents.visible"></p-inputSwitch>
+                                                    </div>
+                                                </div>
+                                                <div class="p-field">
+                                                    <label for="9">Username</label>
+                                                    <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                           placeholder="Username"
+                                                           id="9" [(ngModel)]="selectedPieceJointeAdherents.username"
+                                                           />
+                                                </div>
+
+                                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-mt-4"
+                                                label="OK" (click)="addPieceJointeAdherents()"
+                                        ></button>
+                                    </div>
+                                    <div class="p-col">
+                                        <div class="card">
+                                            <p-table [value]="selectedAdherent.pieceJointeAdherentsVo" [scrollable]="true"
+                                                    scrollHeight="200px">
+                                                <ng-template pTemplate="header">
+                                                    <tr>
+                                                                    <th>Path</th>
+                                                                    <th>Date ajout</th>
+                                                                    <th>Libelle</th>
+                                                                    <th>Archive</th>
+                                                                    <th>Date archivage</th>
+                                                                    <th>Date creation</th>
+                                                                    <th>Admin</th>
+                                                                    <th>Visible</th>
+                                                                    <th>Username</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </ng-template>
+                                                <ng-template pTemplate="body" let-p>
+                                                    <tr>
+                                                                    <td>{{p.path}}</td>
+
+                                                                    <td>{{p.dateAjout | date: dateFormatColumn}}</td>
+
+                                                                    <td>{{p.libelle}}</td>
+
+                                                                    <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                                    <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                                    <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                        <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                                    </td>
+
+                                                                    <td>{{p.username}}</td>
+
+                                                        <td>
+                                                            <button (click)="deletePieceJointeAdherents(p)" pButton type="button"
+                                                                                                                 icon="pi pi-times"  class="p-button-rounded p-button-danger">
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </ng-template>
+                                            </p-table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideEditDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check"  style="margin:10px" (click)="edit()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-ville-create-admin></app-ville-create-admin>
+                    <app-qualite-create-admin></app-qualite-create-admin>
+                    <app-etat-carte-create-admin></app-etat-carte-create-admin>
+                    <app-statut-create-admin></app-statut-create-admin>
+                    <app-fonction-create-admin></app-fonction-create-admin>
+
+                            <app-qualite-create-admin></app-qualite-create-admin>
+                            <app-qualite-create-admin></app-qualite-create-admin>
+
+
+    </p-dialog>
+
+
+

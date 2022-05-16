@@ -1,0 +1,287 @@
+
+<p-dialog [(visible)]="viewModerateurDialog" [style]="{width: '70vw'}"
+        header="Moderateur" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Moderateur">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Numero matricule</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Numero matricule"  [(ngModel)]="selectedModerateur.numeroMatricule"
+                                           id="1" [(ngModel)]="selectedModerateur.numeroMatricule"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Email principale</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Email principale"  [(ngModel)]="selectedModerateur.emailPrincipale"
+                                           id="2" [(ngModel)]="selectedModerateur.emailPrincipale"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="3">Credentials non expired</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="3"  [disabled]="true" [(ngModel)]="selectedModerateur.credentialsNonExpired"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="4">Enabled</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="4"  [disabled]="true" [(ngModel)]="selectedModerateur.enabled"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="5">Account non expired</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="5"  [disabled]="true" [(ngModel)]="selectedModerateur.accountNonExpired"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="6">Account non locked</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="6"  [disabled]="true" [(ngModel)]="selectedModerateur.accountNonLocked"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="7">Password changed</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="7"  [disabled]="true" [(ngModel)]="selectedModerateur.passwordChanged"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Created at</label>
+                                    <p-calendar id="8" [disabled]="true"
+                                                placeholder="Created at"  [(ngModel)]="selectedModerateur.createdAt"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Updated at</label>
+                                    <p-calendar id="9" [disabled]="true"
+                                                placeholder="Updated at"  [(ngModel)]="selectedModerateur.updatedAt"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedModerateur.username"
+                                           id="10" [(ngModel)]="selectedModerateur.username"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Password</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Password"  [(ngModel)]="selectedModerateur.password"
+                                           id="11" [(ngModel)]="selectedModerateur.password"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="12">Prenom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom"  [(ngModel)]="selectedModerateur.prenom"
+                                           id="12" [(ngModel)]="selectedModerateur.prenom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="13">Nom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom"  [(ngModel)]="selectedModerateur.nom"
+                                           id="13" [(ngModel)]="selectedModerateur.nom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Situation moderateur</label>
+                                    <p-dropdown [options]="situationModerateurs" [(ngModel)]="selectedModerateur.situationModerateurVo"
+                                            id="15" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Situation moderateur">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="16">Profil</label>
+                                    <p-dropdown [options]="profils" [(ngModel)]="selectedModerateur.profilVo"
+                                            id="16" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Profil">
+                                    </p-dropdown>
+                                </div>
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Missions">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedModerateur.missionsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Reference</th>
+                                                            <th>Date debut</th>
+                                                            <th>Date fin</th>
+                                                            <th>Ville</th>
+                                                            <th>Moyen de transport</th>
+                                                            <th>Distance</th>
+                                                            <th>Pv</th>
+                                                            <th>Piece jointe missions</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.reference}}</td>
+
+                                                            <td>{{p.dateDebut | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateFin | date: dateFormatColumn}}</td>
+
+                                                        <td>{{p.villeVo?.libelle}}</td>
+                                                            <td>{{p.moyenDeTransport}}</td>
+
+                                                            <td>{{p.distance}}</td>
+
+                                                            <td>{{p.pv}}</td>
+
+                                                            <td>{{p.pieceJointeMissions}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Taches">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedModerateur.tachesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Reference</th>
+                                                            <th>Date tache</th>
+                                                            <th>Description</th>
+                                                            <th>Etat tache</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.reference}}</td>
+
+                                                            <td>{{p.dateTache | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.description}}</td>
+
+                                                        <td>{{p.etatTacheVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-situation-moderateur-create-admin></app-situation-moderateur-create-admin>
+            <app-profil-create-admin></app-profil-create-admin>
+
+                    <app-ville-create-admin></app-ville-create-admin>
+                    <app-etat-tache-create-admin></app-etat-tache-create-admin>
+
+
+</p-dialog>
+
+
+

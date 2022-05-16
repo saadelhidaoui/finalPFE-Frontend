@@ -1,0 +1,269 @@
+
+<p-dialog [(visible)]="viewPrestationDialog" [style]="{width: '70vw'}"
+        header="Prestation" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Prestation">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Reference</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Reference"  [(ngModel)]="selectedPrestation.reference"
+                                           id="1" [(ngModel)]="selectedPrestation.reference"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Num arrivee</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Num arrivee"  [(ngModel)]="selectedPrestation.numArrivee"
+                                           id="2" [(ngModel)]="selectedPrestation.numArrivee"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="3">Envoye</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="3"  [disabled]="true" [(ngModel)]="selectedPrestation.envoye"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Date envoi</label>
+                                    <p-calendar id="4" [disabled]="true"
+                                                placeholder="Date envoi"  [(ngModel)]="selectedPrestation.dateEnvoi"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="5">Etat prestation</label>
+                                    <p-dropdown [options]="etatPrestations" [(ngModel)]="selectedPrestation.etatPrestationVo"
+                                            id="5" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat prestation">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Date traitement</label>
+                                    <p-calendar id="6" [disabled]="true"
+                                                placeholder="Date traitement"  [(ngModel)]="selectedPrestation.dateTraitement"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="7">Charge cas</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Charge cas"  [(ngModel)]="selectedPrestation.chargeCas"
+                                           id="7" [(ngModel)]="selectedPrestation.chargeCas"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Niveau importance</label>
+                                    <p-dropdown [options]="niveauImportances" [(ngModel)]="selectedPrestation.niveauImportanceVo"
+                                            id="8" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Niveau importance">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Type prestation</label>
+                                    <p-dropdown [options]="typePrestations" [(ngModel)]="selectedPrestation.typePrestationVo"
+                                            id="9" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Type prestation">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="10">Resultat</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="10"  [disabled]="true" [(ngModel)]="selectedPrestation.resultat"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Notes</label>
+                                    <textarea id="11" pInputTextarea rows="5" cols="30"
+                                              placeholder="Notes"  [(ngModel)]="selectedPrestation.notes"
+                                    ></textarea>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="12">Adherent</label>
+                                    <p-dropdown [options]="adherents" [(ngModel)]="selectedPrestation.adherentVo"
+                                            id="12" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="username"
+                                            placeholder="Adherent">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="13">Piece jointe prestations</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="13" [disabled]="true"
+                                                   placeholder="Piece jointe prestations"  [(ngModel)]="selectedPrestation.pieceJointePrestations"
+                                            [(ngModel)]="selectedPrestation.pieceJointePrestations"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="14">Archive</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="14"  [disabled]="true" [(ngModel)]="selectedPrestation.archive"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Date archivage</label>
+                                    <p-calendar id="15" [disabled]="true"
+                                                placeholder="Date archivage"  [(ngModel)]="selectedPrestation.dateArchivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="16">Date creation</label>
+                                    <p-calendar id="16" [disabled]="true"
+                                                placeholder="Date creation"  [(ngModel)]="selectedPrestation.dateCreation"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="17">Admin</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="17"  [disabled]="true" [(ngModel)]="selectedPrestation.admin"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="18">Visible</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="18"  [disabled]="true" [(ngModel)]="selectedPrestation.visible"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="19">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedPrestation.username"
+                                           id="19" [(ngModel)]="selectedPrestation.username"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Piece jointe prestations">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedPrestation.pieceJointePrestationsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Path</th>
+                                                            <th>Date ajout</th>
+                                                            <th>Libelle</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.path}}</td>
+
+                                                            <td>{{p.dateAjout | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.libelle}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-etat-prestation-create-chercheur></app-etat-prestation-create-chercheur>
+            <app-niveau-importance-create-chercheur></app-niveau-importance-create-chercheur>
+            <app-type-prestation-create-chercheur></app-type-prestation-create-chercheur>
+            <app-adherent-create-chercheur></app-adherent-create-chercheur>
+
+
+
+</p-dialog>
+
+
+

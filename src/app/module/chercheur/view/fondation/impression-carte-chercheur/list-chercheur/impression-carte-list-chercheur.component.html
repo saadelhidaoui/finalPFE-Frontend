@@ -1,0 +1,618 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateImpressionCarte('impressionCarte')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.aff">
+                                    <label for="1">Aff</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="2"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.qualite">
+                                    <label for="2">Qualite</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.nom">
+                                    <label for="3">Nom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="4"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.prenom">
+                                    <label for="4">Prenom</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="5"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.nomprenomar">
+                                    <label for="5">Nomprenomar</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="6"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.nomAr">
+                                    <label for="6">Nom ar</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="7"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.prenomAr">
+                                    <label for="7">Prenom ar</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="8"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cinn">
+                                    <label for="8">Cinn</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="9"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cin">
+                                    <label for="9">Cin</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="10"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.pprr">
+                                    <label for="10">Pprr</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="11"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.ppr">
+                                    <label for="11">Ppr</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="12"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.naissance">
+                                    <label for="12">Naissance</label>
+                                </span>
+
+                        <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchImpressionCarte.dateNaissanceMin"
+                                    id="13-1"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="13-1">Date naissance Min</label>
+                        </span>
+
+                         <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                            <p-calendar
+                                    class="p-mr-2" [(ngModel)]="searchImpressionCarte.dateNaissanceMax"
+                                    id="13-2"
+                                    dateFormat="dd-MM-yy"></p-calendar>
+                            <label for="13-2">Date naissance Max</label>
+                        </span>
+
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="14"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.photo">
+                                    <label for="14">Photo</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="15"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cinnConjoint">
+                                    <label for="15">Cinn conjoint</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="16"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cinConjoint">
+                                    <label for="16">Cin conjoint</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="17"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.adherent">
+                                    <label for="17">Adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="18"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.nomAdherent">
+                                    <label for="18">Nom adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="19"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.prenomAdherent">
+                                    <label for="19">Prenom adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="20"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cinnAdherent">
+                                    <label for="20">Cinn adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="21"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.cinAdherent">
+                                    <label for="21">Cin adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="22"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.pprrAdherent">
+                                    <label for="22">Pprr adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="23"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.pprAdherent">
+                                    <label for="23">Ppr adherent</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="24"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.versocarte">
+                                    <label for="24">Versocarte</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="25"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.aff1">
+                                    <label for="25">Aff1</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="26"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.aff2">
+                                    <label for="26">Aff2</label>
+                                </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="27"
+                                           type="text"  [(ngModel)]="searchImpressionCarte.nval">
+                                    <label for="27">Nval</label>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="impressionCartes" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['aff', 'qualite', 'nom', 'prenom', 'nomprenomar', 'nomAr', 'prenomAr', 'cinn', 'cin', 'pprr', 'ppr', 'naissance', 'dateNaissance', 'photo', 'cinnConjoint', 'cinConjoint', 'adherent', 'nomAdherent', 'prenomAdherent', 'cinnAdherent', 'cinAdherent', 'pprrAdherent', 'pprAdherent', 'versocarte', 'aff1', 'aff2', 'nval']" [(selection)]="selectedImpressionCarte"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Impression cartes</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="aff">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Aff</span>
+                                        <p-sortIcon field="aff"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="qualite">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Qualite</span>
+                                        <p-sortIcon field="qualite"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom</span>
+                                        <p-sortIcon field="nom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="prenom">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Prenom</span>
+                                        <p-sortIcon field="prenom"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nomprenomar">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nomprenomar</span>
+                                        <p-sortIcon field="nomprenomar"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="nomAr">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom ar</span>
+                                        <p-sortIcon field="nomAr"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="prenomAr">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Prenom ar</span>
+                                        <p-sortIcon field="prenomAr"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="cinn">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cinn</span>
+                                        <p-sortIcon field="cinn"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                <!-- 
+                                <th pSortableColumn="cin">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cin</span>
+                                        <p-sortIcon field="cin"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="pprr">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Pprr</span>
+                                        <p-sortIcon field="pprr"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="ppr">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ppr</span>
+                                        <p-sortIcon field="ppr"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="naissance">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Naissance</span>
+                                        <p-sortIcon field="naissance"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="dateNaissance">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Date naissance</span>
+                                        <p-sortIcon field="dateNaissance"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="photo">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Photo</span>
+                                        <p-sortIcon field="photo"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="cinnConjoint">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cinn conjoint</span>
+                                        <p-sortIcon field="cinnConjoint"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="cinConjoint">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cin conjoint</span>
+                                        <p-sortIcon field="cinConjoint"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="adherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Adherent</span>
+                                        <p-sortIcon field="adherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="nomAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nom adherent</span>
+                                        <p-sortIcon field="nomAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="prenomAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Prenom adherent</span>
+                                        <p-sortIcon field="prenomAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="cinnAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cinn adherent</span>
+                                        <p-sortIcon field="cinnAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="cinAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Cin adherent</span>
+                                        <p-sortIcon field="cinAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="pprrAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Pprr adherent</span>
+                                        <p-sortIcon field="pprrAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="pprAdherent">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ppr adherent</span>
+                                        <p-sortIcon field="pprAdherent"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="versocarte">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Versocarte</span>
+                                        <p-sortIcon field="versocarte"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="aff1">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Aff1</span>
+                                        <p-sortIcon field="aff1"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="aff2">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Aff2</span>
+                                        <p-sortIcon field="aff2"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                                <!-- 
+                                <th pSortableColumn="nval">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Nval</span>
+                                        <p-sortIcon field="nval"></p-sortIcon>
+                                    </div>
+                                </th>
+                                --> 
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-impressionCarte>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="impressionCarte"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{impressionCarte.aff}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.qualite}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.nom}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.prenom}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.nomprenomar}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.nomAr}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.prenomAr}}</td>
+                            
+
+                            
+                                 <td>{{impressionCarte.cinn}}</td>
+                            
+
+                             <!-- 
+                                 <td>{{impressionCarte.cin}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.pprr}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.ppr}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.naissance}}</td>
+                             --> 
+
+                             <!-- 
+                                <td>{{impressionCarte.dateNaissance | date:'dd-M-yyyy' }}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.photo}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.cinnConjoint}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.cinConjoint}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.adherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.nomAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.prenomAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.cinnAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.cinAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.pprrAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.pprAdherent}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.versocarte}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.aff1}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.aff2}}</td>
+                             --> 
+
+                             <!-- 
+                                 <td>{{impressionCarte.nval}}</td>
+                             --> 
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editImpressionCarte(impressionCarte)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewImpressionCarte(impressionCarte)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteImpressionCarte(impressionCarte)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateImpressionCarte(impressionCarte)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{impressionCartes ? impressionCartes.length == 1 ? 'y a' : 'y a' : 'y a' }} {{impressionCartes ? impressionCartes.length : 0 }} {{impressionCartes ? impressionCartes.length == 1 ? 'impressionCarte' : 'impressionCartes' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-impression-carte-create-chercheur></app-impression-carte-create-chercheur>
+        <app-impression-carte-edit-chercheur></app-impression-carte-edit-chercheur>
+        <app-impression-carte-view-chercheur></app-impression-carte-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

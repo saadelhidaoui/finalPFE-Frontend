@@ -1,0 +1,300 @@
+
+<p-dialog [(visible)]="viewImpressionCarteDialog" [style]="{width: '70vw'}"
+        header="Impression carte" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Impression carte">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Aff</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Aff"  [(ngModel)]="selectedImpressionCarte.aff"
+                                           id="1" [(ngModel)]="selectedImpressionCarte.aff"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Qualite</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Qualite"  [(ngModel)]="selectedImpressionCarte.qualite"
+                                           id="2" [(ngModel)]="selectedImpressionCarte.qualite"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Nom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom"  [(ngModel)]="selectedImpressionCarte.nom"
+                                           id="3" [(ngModel)]="selectedImpressionCarte.nom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Prenom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom"  [(ngModel)]="selectedImpressionCarte.prenom"
+                                           id="4" [(ngModel)]="selectedImpressionCarte.prenom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="5">Nomprenomar</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nomprenomar"  [(ngModel)]="selectedImpressionCarte.nomprenomar"
+                                           id="5" [(ngModel)]="selectedImpressionCarte.nomprenomar"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Nom ar</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom ar"  [(ngModel)]="selectedImpressionCarte.nomAr"
+                                           id="6" [(ngModel)]="selectedImpressionCarte.nomAr"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="7">Prenom ar</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom ar"  [(ngModel)]="selectedImpressionCarte.prenomAr"
+                                           id="7" [(ngModel)]="selectedImpressionCarte.prenomAr"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Cinn</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cinn"  [(ngModel)]="selectedImpressionCarte.cinn"
+                                           id="8" [(ngModel)]="selectedImpressionCarte.cinn"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Cin</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cin"  [(ngModel)]="selectedImpressionCarte.cin"
+                                           id="9" [(ngModel)]="selectedImpressionCarte.cin"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Pprr</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Pprr"  [(ngModel)]="selectedImpressionCarte.pprr"
+                                           id="10" [(ngModel)]="selectedImpressionCarte.pprr"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Ppr</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Ppr"  [(ngModel)]="selectedImpressionCarte.ppr"
+                                           id="11" [(ngModel)]="selectedImpressionCarte.ppr"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="12">Naissance</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Naissance"  [(ngModel)]="selectedImpressionCarte.naissance"
+                                           id="12" [(ngModel)]="selectedImpressionCarte.naissance"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="13">Date naissance</label>
+                                    <p-calendar id="13" [disabled]="true"
+                                                placeholder="Date naissance"  [(ngModel)]="selectedImpressionCarte.dateNaissance"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="14">Photo</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Photo"  [(ngModel)]="selectedImpressionCarte.photo"
+                                           id="14" [(ngModel)]="selectedImpressionCarte.photo"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Cinn conjoint</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cinn conjoint"  [(ngModel)]="selectedImpressionCarte.cinnConjoint"
+                                           id="15" [(ngModel)]="selectedImpressionCarte.cinnConjoint"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="16">Cin conjoint</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cin conjoint"  [(ngModel)]="selectedImpressionCarte.cinConjoint"
+                                           id="16" [(ngModel)]="selectedImpressionCarte.cinConjoint"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="17">Adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Adherent"  [(ngModel)]="selectedImpressionCarte.adherent"
+                                           id="17" [(ngModel)]="selectedImpressionCarte.adherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="18">Nom adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom adherent"  [(ngModel)]="selectedImpressionCarte.nomAdherent"
+                                           id="18" [(ngModel)]="selectedImpressionCarte.nomAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="19">Prenom adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom adherent"  [(ngModel)]="selectedImpressionCarte.prenomAdherent"
+                                           id="19" [(ngModel)]="selectedImpressionCarte.prenomAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="20">Cinn adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cinn adherent"  [(ngModel)]="selectedImpressionCarte.cinnAdherent"
+                                           id="20" [(ngModel)]="selectedImpressionCarte.cinnAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="21">Cin adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cin adherent"  [(ngModel)]="selectedImpressionCarte.cinAdherent"
+                                           id="21" [(ngModel)]="selectedImpressionCarte.cinAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="22">Pprr adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Pprr adherent"  [(ngModel)]="selectedImpressionCarte.pprrAdherent"
+                                           id="22" [(ngModel)]="selectedImpressionCarte.pprrAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="23">Ppr adherent</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Ppr adherent"  [(ngModel)]="selectedImpressionCarte.pprAdherent"
+                                           id="23" [(ngModel)]="selectedImpressionCarte.pprAdherent"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="24">Versocarte</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Versocarte"  [(ngModel)]="selectedImpressionCarte.versocarte"
+                                           id="24" [(ngModel)]="selectedImpressionCarte.versocarte"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="25">Aff1</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Aff1"  [(ngModel)]="selectedImpressionCarte.aff1"
+                                           id="25" [(ngModel)]="selectedImpressionCarte.aff1"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="26">Aff2</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Aff2"  [(ngModel)]="selectedImpressionCarte.aff2"
+                                           id="26" [(ngModel)]="selectedImpressionCarte.aff2"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="27">Nval</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nval"  [(ngModel)]="selectedImpressionCarte.nval"
+                                           id="27" [(ngModel)]="selectedImpressionCarte.nval"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+
+
+
+</p-dialog>
+
+
+

@@ -1,0 +1,132 @@
+        <p-dialog [(visible)]="createConjointDialog" [style]="{width: '70vw'}"
+                header="Conjoint" [modal]="true"
+                styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+
+
+            <ng-template pTemplate="content" >
+                <p-tabView>
+                    <p-tabPanel header="Conjoint">
+                        <div class="p-grid">
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="1">Cin<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Cin"
+                                                   id="1" [(ngModel)]="selectedConjoint.cin"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointCin}"  />
+                                            <small class='p-error' *ngIf='!validConjointCin'>Cin est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="2">Nom<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Nom"
+                                                   id="2" [(ngModel)]="selectedConjoint.nom"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointNom}"  />
+                                            <small class='p-error' *ngIf='!validConjointNom'>Nom est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="3">Prenom<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Prenom"
+                                                   id="3" [(ngModel)]="selectedConjoint.prenom"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointPrenom}"  />
+                                            <small class='p-error' *ngIf='!validConjointPrenom'>Prenom est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="4">Origin<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Origin"
+                                                   id="4" [(ngModel)]="selectedConjoint.origin"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointOrigin}"  />
+                                            <small class='p-error' *ngIf='!validConjointOrigin'>Origin est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="5">Email<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Email"
+                                                   id="5" [(ngModel)]="selectedConjoint.email"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointEmail}"  />
+                                            <small class='p-error' *ngIf='!validConjointEmail'>Email est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-12 p-md-4">
+                                            <label for="6">Telephone<span style="color: red;">*</span></label>
+                                            <input class="p-mb-2 p-mr-2" type="text" pInputText
+                                                   placeholder="Telephone"
+                                                   id="6" [(ngModel)]="selectedConjoint.telephone"
+                                                    [ngClass]="{'ng-invalid ng-dirty' : !validConjointTelephone}"  />
+                                            <small class='p-error' *ngIf='!validConjointTelephone'>Telephone est obligatoire.</small>
+                                        </div>
+
+
+
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="7">Qualite<span style="color: red;">*</span></label>
+                                            <p-dropdown [options]="qualites" [(ngModel)]="selectedConjoint.qualiteVo"
+                                                    id="7" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="libelle"
+                                                    placeholder="Qualite" [ngClass]="{'ng-invalid ng-dirty' : !validConjointQualite}"  >
+                                            </p-dropdown>
+                                            <small class='p-error' *ngIf='!validConjointQualite'>Qualite est obligatoire.</small>
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreatequalite('qualite')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                                        <div class="p-field p-col-11 p-md-3">
+                                            <label for="8">Adherent<span style="color: red;">*</span></label>
+                                            <p-dropdown [options]="adherents" [(ngModel)]="selectedConjoint.adherentVo"
+                                                    id="8" [filter]="true" filterMatchMode="contains"
+                                                    [showClear]="true"
+                                                    optionLabel="username"
+                                                    placeholder="Adherent" [ngClass]="{'ng-invalid ng-dirty' : !validConjointAdherent}"  >
+                                            </p-dropdown>
+                                            <small class='p-error' *ngIf='!validConjointAdherent'>Adherent est obligatoire.</small>
+                                        </div>
+                                        <div class="p-col-1">
+                                            <label></label>
+                                            <button pButton pRipple type="button"
+                                                    icon="pi pi-plus"   (click)="openCreateadherent('adherent')"
+                                                    class="p-button-success one-colonne-btn-success-align"></button>
+                                        </div>
+                        </div>
+                    </p-tabPanel>
+
+                </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="p-grid">
+                        <div>
+                            <button pButton pRipple label="Annuler" icon="pi pi-times"
+                                    class="p-button-text" (click)="hideCreateDialog()"></button>
+                        </div>
+                    <div>
+                        <button pButton pRipple label="Valider" icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                    </div>
+                </div>
+            </ng-template>
+
+                    <app-qualite-create-moderateur></app-qualite-create-moderateur>
+                    <app-adherent-create-moderateur></app-adherent-create-moderateur>
+
+
+    </p-dialog>

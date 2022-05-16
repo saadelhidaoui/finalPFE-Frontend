@@ -1,0 +1,178 @@
+
+<p-dialog [(visible)]="viewDemandeEstivageDialog" [style]="{width: '70vw'}"
+        header="Demande estivage" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Demande estivage">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="1">Reference</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Reference"  [(ngModel)]="selectedDemandeEstivage.reference"
+                                           id="1" [(ngModel)]="selectedDemandeEstivage.reference"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="2">Demande estivage centre</label>
+                                    <p-dropdown [options]="demandeEstivageCentres" [(ngModel)]="selectedDemandeEstivage.demandeEstivageCentreVo"
+                                            id="2" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="reference"
+                                            placeholder="Demande estivage centre">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="3">Date debut estivage</label>
+                                    <p-calendar id="3" [disabled]="true"
+                                                placeholder="Date debut estivage"  [(ngModel)]="selectedDemandeEstivage.dateDebutEstivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="4">Date fin estivage</label>
+                                    <p-calendar id="4" [disabled]="true"
+                                                placeholder="Date fin estivage"  [(ngModel)]="selectedDemandeEstivage.dateFinEstivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="5">Adherent</label>
+                                    <p-dropdown [options]="adherents" [(ngModel)]="selectedDemandeEstivage.adherentVo"
+                                            id="5" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="username"
+                                            placeholder="Adherent">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="6">Etat demande estivage</label>
+                                    <p-dropdown [options]="etatDemandeEstivages" [(ngModel)]="selectedDemandeEstivage.etatDemandeEstivageVo"
+                                            id="6" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat demande estivage">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="7">Date traitement</label>
+                                    <p-calendar id="7" [disabled]="true"
+                                                placeholder="Date traitement"  [(ngModel)]="selectedDemandeEstivage.dateTraitement"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="8">Estivage centre estivage</label>
+                                    <p-dropdown [options]="estivageCentreEstivages" [(ngModel)]="selectedDemandeEstivage.estivageCentreEstivageVo"
+                                            id="8" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="reference"
+                                            placeholder="Estivage centre estivage">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-4">
+                                    <label for="9">Piece jointe estivages</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="9" [disabled]="true"
+                                                   placeholder="Piece jointe estivages"  [(ngModel)]="selectedDemandeEstivage.pieceJointeEstivages"
+                                            [(ngModel)]="selectedDemandeEstivage.pieceJointeEstivages"></p-inputNumber>
+                                </div>
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Piece jointe estivages">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedDemandeEstivage.pieceJointeEstivagesVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Path</th>
+                                                            <th>Estivage</th>
+                                                            <th>Date ajout</th>
+                                                            <th>Libelle</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.path}}</td>
+
+                                                        <td>{{p.estivageVo?.reference}}</td>
+                                                            <td>{{p.dateAjout | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.libelle}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-demande-estivage-centre-create-adherent></app-demande-estivage-centre-create-adherent>
+            <app-adherent-create-adherent></app-adherent-create-adherent>
+            <app-etat-demande-estivage-create-adherent></app-etat-demande-estivage-create-adherent>
+            <app-estivage-centre-estivage-create-adherent></app-estivage-centre-estivage-create-adherent>
+
+                    <app-estivage-create-adherent></app-estivage-create-adherent>
+
+
+</p-dialog>
+
+
+

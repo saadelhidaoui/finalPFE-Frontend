@@ -1,0 +1,200 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <p-toast></p-toast>
+        <div class="card">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                                            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2"
+                                (click)="openCreateCentreEstivage('centreEstivage')"></button>
+
+
+                    <button pButton pRipple label="Recherche"
+                            icon="pi pi-{{findByCriteriaShow?'angle-down':'angle-right'}}"
+                            class="p-button-success p-mr-2 p-mb-2"
+                            (click)="this.findByCriteriaShow = !this.findByCriteriaShow"></button>
+                </ng-template>
+                <ng-template pTemplate="right">
+                    <div class="flex">
+                        <p-splitButton label="Exporter" icon="pi pi-download" styleClass="p-button-help" [model]="excelPdfButons"></p-splitButton>
+                    </div>
+                </ng-template>
+
+            </p-toolbar>
+            <p-toolbar *ngIf="findByCriteriaShow">
+
+                <div class="align-form-search">
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="1"
+                                           type="text"  [(ngModel)]="searchCentreEstivage.reference">
+                                    <label for="1">Reference</label>
+                                </span>
+                                    <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchCentreEstivage.capaciteMin"
+                                                             id="2-1"></p-inputNumber>
+                                              <label for="2-1">Capacite Min</label>
+                                       </span>
+                                       <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                              <p-inputNumber class="p-mr-2"
+                                                             mode="decimal" [(ngModel)]="searchCentreEstivage.capaciteMax"
+                                                             id="2-2"></p-inputNumber>
+                                             <label for="2-2">Capacite Max</label>
+                                       </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <input class="p-mr-2" pInputText id="3"
+                                           type="text"  [(ngModel)]="searchCentreEstivage.libelle">
+                                    <label for="3">Libelle</label>
+                                </span>
+                            <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                <p-dropdown [options]="villes" [(ngModel)]="searchCentreEstivage.villeVo"
+                                        id="4"
+                                        [filter]="true" [showClear]="true"  placeholder="Ville"
+                                        optionLabel="libelle">
+                                </p-dropdown>
+                            </span>
+                                <span class=" p-float-label p-mr-3 align-search-items p-mt-4">
+                                    <p-dropdown  id="5" [options]="yesOrNoVip" [(ngModel)]="searchCentreEstivage.vip"
+                                            [filter]="false" [showClear]="true"  placeholder="Vip"
+                                                 optionLabel="label" optionValue="value">
+                                    </p-dropdown>
+                                </span>
+                </div>
+
+                <div class="align-search-button">
+                    <button pButton pRipple label="Valider" icon="pi pi-sort-amount-down"
+                            class="p-button-info p-mr-2" (click)="searchRequest()"></button>
+                </div>
+            </p-toolbar>
+
+
+            <p-table #dt [value]="centreEstivages" [columns]="cols" [rows]="4" [paginator]="true"
+                    [globalFilterFields]="['reference', 'capacite', 'libelle', 'libelle', 'vip']" [(selection)]="selectedCentreEstivage"
+                    [rowHover]="true" dataKey="id" styleClass="p-datatable-customers"
+                                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Liste des Centre estivages</h5>
+                        <span class="p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" placeholder="Search..." (input)="dt.filterGlobal($event.target.value, 'contains')"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+
+                                
+                                <th pSortableColumn="reference">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Reference</span>
+                                        <p-sortIcon field="reference"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="capacite">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Capacite</span>
+                                        <p-sortIcon field="capacite"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="libelle">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Libelle</span>
+                                        <p-sortIcon field="libelle"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="ville">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Ville</span>
+                                        <p-sortIcon field="ville"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                                
+                                <th pSortableColumn="vip">
+                                    <div class="p-d-flex p-jc-between p-ai-center">
+                                        <span>Vip</span>
+                                        <p-sortIcon field="vip"></p-sortIcon>
+                                    </div>
+                                </th>
+                                
+
+
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-centreEstivage>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="centreEstivage"></p-tableCheckbox>
+                        </td>
+                            
+                                 <td>{{centreEstivage.reference}}</td>
+                            
+
+                            
+                                 <td>{{centreEstivage.capacite}}</td>
+                            
+
+                            
+                                 <td>{{centreEstivage.libelle}}</td>
+                            
+
+                            
+                                <td>{{centreEstivage.villeVo?.libelle}}</td>
+                            
+
+                            
+                                <td><i *ngIf="centreEstivage.vip" class="pi pi-check checked-toogle"></i>
+                                    <i *ngIf="!centreEstivage.vip" class="pi pi-times unchecked-toogle"></i>
+                                </td>
+                            
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-success p-mr-2"
+                                    (click)="editCentreEstivage(centreEstivage)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
+                                    (click)="viewCentreEstivage(centreEstivage)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-mr-2"
+                                    (click)="deleteCentreEstivage(centreEstivage)"></button>
+
+                            <button pButton pRipple icon="pi pi-copy" class="p-button-rounded p-button-raised p-button-warning"
+                                    (click)="duplicateCentreEstivage(centreEstivage)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        En totale
+                        il {{centreEstivages ? centreEstivages.length == 1 ? 'y a' : 'y a' : 'y a' }} {{centreEstivages ? centreEstivages.length : 0 }} {{centreEstivages ? centreEstivages.length == 1 ? 'centreEstivage' : 'centreEstivages' : 0 }}
+                        .
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-centre-estivage-create-chercheur></app-centre-estivage-create-chercheur>
+        <app-centre-estivage-edit-chercheur></app-centre-estivage-edit-chercheur>
+        <app-centre-estivage-view-chercheur></app-centre-estivage-view-chercheur>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

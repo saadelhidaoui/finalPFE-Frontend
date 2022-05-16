@@ -1,0 +1,531 @@
+
+<p-dialog [(visible)]="viewAdherentDialog" [style]="{width: '70vw'}"
+        header="Adherent" [modal]="true"
+        styleClass="p-fluid">
+
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="Adherent">
+                <div class="p-grid">
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="1">Num adhesion</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Num adhesion"  [(ngModel)]="selectedAdherent.numAdhesion"
+                                           id="1" [(ngModel)]="selectedAdherent.numAdhesion"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="2">Cin</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Cin"  [(ngModel)]="selectedAdherent.cin"
+                                           id="2" [(ngModel)]="selectedAdherent.cin"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="3">Nom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Nom"  [(ngModel)]="selectedAdherent.nom"
+                                           id="3" [(ngModel)]="selectedAdherent.nom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="4">Prenom</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Prenom"  [(ngModel)]="selectedAdherent.prenom"
+                                           id="4" [(ngModel)]="selectedAdherent.prenom"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="5">Origine</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Origine"  [(ngModel)]="selectedAdherent.origine"
+                                           id="5" [(ngModel)]="selectedAdherent.origine"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="6">Ville</label>
+                                    <p-dropdown [options]="villes" [(ngModel)]="selectedAdherent.villeVo"
+                                            id="6" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Ville">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="7">Telephone</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Telephone"  [(ngModel)]="selectedAdherent.telephone"
+                                           id="7" [(ngModel)]="selectedAdherent.telephone"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="8">Qualite</label>
+                                    <p-dropdown [options]="qualites" [(ngModel)]="selectedAdherent.qualiteVo"
+                                            id="8" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Qualite">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="9">Adresse</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Adresse"  [(ngModel)]="selectedAdherent.adresse"
+                                           id="9" [(ngModel)]="selectedAdherent.adresse"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="10">Ppr</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Ppr"  [(ngModel)]="selectedAdherent.ppr"
+                                           id="10" [(ngModel)]="selectedAdherent.ppr"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="11">Date naissance</label>
+                                    <p-calendar id="11" [disabled]="true"
+                                                placeholder="Date naissance"  [(ngModel)]="selectedAdherent.dateNaissance"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="12">Etat carte</label>
+                                    <p-dropdown [options]="etatCartes" [(ngModel)]="selectedAdherent.etatCarteVo"
+                                            id="12" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Etat carte">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="13">Date arrivee</label>
+                                    <p-calendar id="13" [disabled]="true"
+                                                placeholder="Date arrivee"  [(ngModel)]="selectedAdherent.dateArrivee"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="14">Date reception</label>
+                                    <p-calendar id="14" [disabled]="true"
+                                                placeholder="Date reception"  [(ngModel)]="selectedAdherent.dateReception"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="15">Statut</label>
+                                    <p-dropdown [options]="statuts" [(ngModel)]="selectedAdherent.statutVo"
+                                            id="15" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Statut">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="16">Fonction</label>
+                                    <p-dropdown [options]="fonctions" [(ngModel)]="selectedAdherent.fonctionVo"
+                                            id="16" [filter]="true" filterMatchMode="contains"
+                                            [showClear]="true" [disabled]="true"
+                                            optionLabel="libelle"
+                                            placeholder="Fonction">
+                                    </p-dropdown>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="17">Conjoints</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="17" [disabled]="true"
+                                                   placeholder="Conjoints"  [(ngModel)]="selectedAdherent.conjoints"
+                                            [(ngModel)]="selectedAdherent.conjoints"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="19">Piece jointe adherents</label>
+                                    <p-inputNumber class="p-mb-2 p-mr-2" id="19" [disabled]="true"
+                                                   placeholder="Piece jointe adherents"  [(ngModel)]="selectedAdherent.pieceJointeAdherents"
+                                            [(ngModel)]="selectedAdherent.pieceJointeAdherents"></p-inputNumber>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="20">Numero matricule</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Numero matricule"  [(ngModel)]="selectedAdherent.numeroMatricule"
+                                           id="20" [(ngModel)]="selectedAdherent.numeroMatricule"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="21">Email principale</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Email principale"  [(ngModel)]="selectedAdherent.emailPrincipale"
+                                           id="21" [(ngModel)]="selectedAdherent.emailPrincipale"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="22">Credentials non expired</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="22"  [disabled]="true" [(ngModel)]="selectedAdherent.credentialsNonExpired"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="23">Enabled</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="23"  [disabled]="true" [(ngModel)]="selectedAdherent.enabled"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="24">Account non expired</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="24"  [disabled]="true" [(ngModel)]="selectedAdherent.accountNonExpired"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="25">Account non locked</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="25"  [disabled]="true" [(ngModel)]="selectedAdherent.accountNonLocked"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="26">Password changed</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="26"  [disabled]="true" [(ngModel)]="selectedAdherent.passwordChanged"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="27">Created at</label>
+                                    <p-calendar id="27" [disabled]="true"
+                                                placeholder="Created at"  [(ngModel)]="selectedAdherent.createdAt"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="28">Updated at</label>
+                                    <p-calendar id="28" [disabled]="true"
+                                                placeholder="Updated at"  [(ngModel)]="selectedAdherent.updatedAt"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="29">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedAdherent.username"
+                                           id="29" [(ngModel)]="selectedAdherent.username"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="30">Password</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Password"  [(ngModel)]="selectedAdherent.password"
+                                           id="30" [(ngModel)]="selectedAdherent.password"
+                                           autofocus>
+                                </div>
+
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="32">Archive</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="32"  [disabled]="true" [(ngModel)]="selectedAdherent.archive"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="33">Date archivage</label>
+                                    <p-calendar id="33" [disabled]="true"
+                                                placeholder="Date archivage"  [(ngModel)]="selectedAdherent.dateArchivage"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="34">Date creation</label>
+                                    <p-calendar id="34" [disabled]="true"
+                                                placeholder="Date creation"  [(ngModel)]="selectedAdherent.dateCreation"
+                                            dateFormat="{{dateFormat}}"></p-calendar>
+                                </div>
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="35">Admin</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="35"  [disabled]="true" [(ngModel)]="selectedAdherent.admin"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field align-inputswitch p-col-12  p-md-3">
+                                    <div  class="label-inputswitch">
+                                        <label for="36">Visible</label>
+                                    </div>
+                                    <div class="input-switch">
+                                        <p-inputSwitch id="36"  [disabled]="true" [(ngModel)]="selectedAdherent.visible"></p-inputSwitch>
+                                    </div>
+                                </div>
+
+
+                                <div class="p-field p-col-12 p-md-3">
+                                    <label for="37">Username</label>
+                                    <input class="p-mb-2 p-mr-2" type="text" pInputText [disabled]="true"
+                                           placeholder="Username"  [(ngModel)]="selectedAdherent.username"
+                                           id="37" [(ngModel)]="selectedAdherent.username"
+                                           autofocus>
+                                </div>
+
+
+
+                </div>
+            </p-tabPanel>
+                    <p-tabPanel header="Conjoints">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedAdherent.conjointsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Cin</th>
+                                                            <th>Nom</th>
+                                                            <th>Prenom</th>
+                                                            <th>Origin</th>
+                                                            <th>Email</th>
+                                                            <th>Telephone</th>
+                                                            <th>Qualite</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.cin}}</td>
+
+                                                            <td>{{p.nom}}</td>
+
+                                                            <td>{{p.prenom}}</td>
+
+                                                            <td>{{p.origin}}</td>
+
+                                                            <td>{{p.email}}</td>
+
+                                                            <td>{{p.telephone}}</td>
+
+                                                        <td>{{p.qualiteVo?.libelle}}</td>
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Enfants">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedAdherent.enfantsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Reference</th>
+                                                            <th>Nom</th>
+                                                            <th>Prenom</th>
+                                                            <th>Age</th>
+                                                            <th>Date naissance</th>
+                                                            <th>Qualite</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.reference}}</td>
+
+                                                            <td>{{p.nom}}</td>
+
+                                                            <td>{{p.prenom}}</td>
+
+                                                            <td>{{p.age}}</td>
+
+                                                            <td>{{p.dateNaissance | date: dateFormatColumn}}</td>
+
+                                                        <td>{{p.qualiteVo?.libelle}}</td>
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+                    <p-tabPanel header="Piece jointe adherents">
+                        <div class="p-grid">
+
+                            <div class="p-col">
+                                <div class="card">
+                                    <p-table [value]="selectedAdherent.pieceJointeAdherentsVo" [scrollable]="true"
+                                            scrollHeight="200px">
+                                        <ng-template pTemplate="header">
+                                            <tr>
+                                                            <th>Path</th>
+                                                            <th>Date ajout</th>
+                                                            <th>Libelle</th>
+                                                            <th>Archive</th>
+                                                            <th>Date archivage</th>
+                                                            <th>Date creation</th>
+                                                            <th>Admin</th>
+                                                            <th>Visible</th>
+                                                            <th>Username</th>
+                                            </tr>
+                                        </ng-template>
+                                        <ng-template pTemplate="body" let-p>
+                                            <tr>
+                                                            <td>{{p.path}}</td>
+
+                                                            <td>{{p.dateAjout | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.libelle}}</td>
+
+                                                            <td><i *ngIf="p.archive" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.archive" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.dateArchivage | date: dateFormatColumn}}</td>
+
+                                                            <td>{{p.dateCreation | date: dateFormatColumn}}</td>
+
+                                                            <td><i *ngIf="p.admin" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.admin" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td><i *ngIf="p.visible" class="pi pi-check checked-toogle"></i>
+                                                                <i *ngIf="!p.visible" class="pi pi-times unchecked-toogle"></i>
+                                                            </td>
+
+                                                            <td>{{p.username}}</td>
+
+
+                                            </tr>
+                                        </ng-template>
+                                    </p-table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </p-tabPanel>
+
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="p-grid">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times"
+                        class="p-button-text" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+
+            <app-ville-create-chercheur></app-ville-create-chercheur>
+            <app-qualite-create-chercheur></app-qualite-create-chercheur>
+            <app-etat-carte-create-chercheur></app-etat-carte-create-chercheur>
+            <app-statut-create-chercheur></app-statut-create-chercheur>
+            <app-fonction-create-chercheur></app-fonction-create-chercheur>
+
+                    <app-qualite-create-chercheur></app-qualite-create-chercheur>
+                    <app-qualite-create-chercheur></app-qualite-create-chercheur>
+
+
+</p-dialog>
+
+
+
